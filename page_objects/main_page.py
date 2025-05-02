@@ -46,11 +46,14 @@ class MainPage(BasePage):
     )
     def main_page_add_product_to_cart(self):
         self.wait_title("Your Store")
+        self.scroll_to_element(self.ADD_BUTTON)
+        time.sleep(1)
         self.action_chains_click(self.ADD_BUTTON)
         time.sleep(1)
         self.scroll_to_up()
         time.sleep(6)  # waiting for disappearing alert window
         self.action_chains_click(self.SHOPPING_CART)
+        self.wait_element(self.SHOPPING_CART_TEXT_ELEMENT)
         return self.get_text(self.SHOPPING_CART_TEXT_ELEMENT)
 
     @allure.step("Получить цену продукта")
