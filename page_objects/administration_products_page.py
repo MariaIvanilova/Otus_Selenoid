@@ -1,5 +1,3 @@
-import time
-
 import allure
 from selenium.webdriver.common.by import By
 from base_page import BasePage
@@ -37,10 +35,8 @@ class ProductsPage(BasePage):
     def products_add_new_product(self, product_name):
         self.input_value_to_field(self.PRODUCT_NAME, product_name)
         self.scroll_to_element(self.META_TAG_TITLE)
-        time.sleep(1)  # for scrolling
         self.input_value_to_field(self.META_TAG_TITLE, product_name)
         self.scroll_to_up()
-        time.sleep(1)  # for scrolling
         self.click_to_element(self.DATA_TAB)
         self.input_value_to_field(self.MODEL, "test_model")
         self.click_to_element(self.SEO_TAB)
