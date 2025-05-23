@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
+import time
 
 
 class BasePage:
@@ -30,9 +31,11 @@ class BasePage:
             allure.attach(
                 body=self.browser.get_screenshot_as_png(),
                 name="screenshot.png",
-                attachment_type=allure.attachment_type.PNG
+                attachment_type=allure.attachment_type.PNG,
             )
-            raise AssertionError(f"Element with locator:{locator} is absent on pade {self.browser.current_url}")
+            raise AssertionError(
+                f"Element with locator:{locator} is absent on pade {self.browser.current_url}"
+            )
 
     def is_elements_list_present(self, elements: list):
         self.logger.info(
@@ -49,9 +52,11 @@ class BasePage:
                 allure.attach(
                     body=self.browser.get_screenshot_as_png(),
                     name=f"{self.browser.session_id}.png",
-                    attachment_type=allure.attachment_type.PNG
+                    attachment_type=allure.attachment_type.PNG,
                 )
-                raise AssertionError(f"Element with locator:{locator} is absent on pade {self.browser.current_url}")
+                raise AssertionError(
+                    f"Element with locator:{locator} is absent on pade {self.browser.current_url}"
+                )
         return True
 
     def wait_title(self, title, timeout=3):
@@ -120,11 +125,18 @@ class BasePage:
         self.browser.execute_script(
             "arguments[0].scrollIntoView(true);", self.browser.find_element(*locator)
         )
+        time.sleep(1)
 
     def scroll_to_up(self):
         self.logger.debug("Scroll to page up")
         self.browser.execute_script("window.scrollTo(0, 0)")
+        time.sleep(1)
 
     def alert_confirm(self):
         self.logger.info("Accept alert")
         self.browser.switch_to.alert.accept()
+
+    def scroll_to_down(self):
+        self.logger.debug("Scroll to page down")
+        self.browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+        time.sleep(1)

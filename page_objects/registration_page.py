@@ -33,5 +33,6 @@ class RegistrationPage(BasePage):
         self.input_value_to_field(self.LAST_NAME, last_name)
         self.input_value_to_field(self.EMAIL, email)
         self.input_value_to_field(self.PASSWORD, password)
+        self.scroll_to_down()
         self.action_chains_click(self.POLICY)
         self.click_to_element(self.SUBMIT_BUTTON)

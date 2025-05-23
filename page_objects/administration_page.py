@@ -12,7 +12,7 @@ class AdministrationPage(BasePage):
 
     LOGOUT = (By.ID, "nav-logout")
 
-    CATALOG = (By.CSS_SELECTOR, "#menu-catalog>a")
+    CATALOG = (By.CSS_SELECTOR, "#menu-catalog")
     PRODUCTS = (By.CSS_SELECTOR, "#collapse-1>li:nth-child(2)")
 
     @allure.step("Получить список элементов на странице Administration")
